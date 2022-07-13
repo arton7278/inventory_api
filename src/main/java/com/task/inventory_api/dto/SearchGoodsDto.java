@@ -2,12 +2,14 @@ package com.task.inventory_api.dto;
 
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
-import lombok.extern.slf4j.Slf4j;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 
+@EqualsAndHashCode(callSuper = true)
 @Data
-@Slf4j
-public class SearchGoodsDto {
+@ToString
+public class SearchGoodsDto extends  BaseSearchDto{
 	@ApiModelProperty(value = "상품명")
 	private String goodsNm;
 	@ApiModelProperty(value = "옵션명")

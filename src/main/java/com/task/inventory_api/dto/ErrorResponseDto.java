@@ -1,6 +1,6 @@
 package com.task.inventory_api.dto;
 
-import goods_crud.goods_api.common.ErrorCode;
+import com.task.inventory_api.common.ErrorCode;
 import lombok.Getter;
 import lombok.Setter;
 

@@ -23,7 +23,7 @@ public class Inventory {
     private Long stock;
 
     @JsonIgnore
-    @OneToOne(mappedBy="goods", fetch = LAZY)
+    @OneToOne(mappedBy="inventory", fetch = LAZY)
     private Goods goods;
 
     public void setStockIncrease(Long stock) {

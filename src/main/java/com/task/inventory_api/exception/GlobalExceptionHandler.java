@@ -1,7 +1,7 @@
 package com.task.inventory_api.exception;
 
-import com.task.barogo.barogoApi.common.ErrorCode;
-import com.task.barogo.barogoApi.dto.ErrorResponseDto;
+import com.task.inventory_api.common.ErrorCode;
+import com.task.inventory_api.dto.ErrorResponseDto;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,10 +32,6 @@ public class GlobalExceptionHandler {
             String field = fieldError.getField();
 
             etcMessage(builder, fieldError);
-
-            if("Pattern".equals(code) && "password".equals(field)) {
-                errorResponseDto = new ErrorResponseDto(ErrorCode.WRONG_PASSWORD_PATTERN);
-            }
 
         }
         errorResponseDto.setEtcMessage(builder.toString());

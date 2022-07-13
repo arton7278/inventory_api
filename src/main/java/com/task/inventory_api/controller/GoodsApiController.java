@@ -33,9 +33,10 @@ public class GoodsApiController {
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
 
+    @ApiOperation(value = "상품 조회")
     @GetMapping("/api/v1/goods")
     public ResponseEntity<ApiReponseDto> findGoodsAll(@ModelAttribute SearchGoodsDto searchGoodsDto) {
-        FindResponseDto.GoodsResponse goodsResponse = new FindResponseDto.GoodsResponse();
-        return goodsResponse.toDoList(goodsService.findGoodsAll(searchGoodsDto));
+        ApiReponseDto apiReponseDto = new ApiReponseDto(HttpStatus.OK.value(),  goodsService.findGoodsAll(searchGoodsDto));
+        return new ResponseEntity<>(apiReponseDto, HttpStatus.OK);
     }
 }

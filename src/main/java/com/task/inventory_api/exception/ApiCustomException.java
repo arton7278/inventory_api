@@ -1,7 +1,6 @@
 package com.task.inventory_api.exception;
 
 
-import com.task.barogo.barogoApi.common.ErrorCode;
 import com.task.inventory_api.common.ErrorCode;
 import lombok.Getter;
 

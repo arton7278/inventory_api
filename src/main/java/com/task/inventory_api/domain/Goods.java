@@ -11,7 +11,7 @@ import static javax.persistence.FetchType.LAZY;
 @Entity
 @Getter
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
-public class Goods extends  BaseTimeEntity{
+public class Goods extends BaseTimeEntity{
     //goods 시리얼
     @Id @GeneratedValue
     @Column(name = "goods_srl")
