@@ -9,7 +9,6 @@ import lombok.ToString;
 import javax.validation.constraints.*;
 
 @Data
-@AllArgsConstructor
 @ToString
 public class CreateGoodsDto {
         //사용자 ID
@@ -22,7 +21,6 @@ public class CreateGoodsDto {
         private String optionNm;
 
         @ApiModelProperty(value = "재고수량", required = true)
-        @NotNull
         @PositiveOrZero
         @Min(0)
         private Long stock;

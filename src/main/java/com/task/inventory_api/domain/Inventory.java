@@ -1,6 +1,8 @@
 package com.task.inventory_api.domain;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.task.inventory_api.common.ErrorCode;
+import com.task.inventory_api.exception.ApiCustomException;
 import lombok.AccessLevel;
 import lombok.Builder;
 import lombok.Getter;
@@ -22,8 +24,9 @@ public class Inventory {
     //수량
     private Long stock;
 
-    @JsonIgnore
-    @OneToOne(mappedBy="inventory", fetch = LAZY)
+
+    @OneToOne(fetch = LAZY)
+    @JoinColumn(name = "goods_srl")
     private Goods goods;
 
     public void setStockIncrease(Long stock) {
@@ -31,7 +34,12 @@ public class Inventory {
     }
 
     public void setStockDeduction(Long stock) {
-        this.stock -= stock;
+        if(this.stock - stock < 0){
+            throw new ApiCustomException(ErrorCode.INVENTORY_CANNOT_BE_MINUS);
+        } else {
+            this.stock -= stock;
+        }
+
     }
 
     public void setGoods(Goods goods) {
@@ -39,7 +47,8 @@ public class Inventory {
     }
 
     @Builder
-    public Inventory(Long stock){
+    public Inventory(Long stock, Goods goods){
         this.stock = stock;
+        this.goods =  goods;
     }
 }

@@ -11,13 +11,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.PositiveOrZero;
 
 @Data
-@AllArgsConstructor
 @ToString
 public class UpdateInventoryDto {
 
         @ApiModelProperty(value = "재고수량", required = true)
-        @NotNull
         @PositiveOrZero
+        @NotNull
         @Min(0)
         private Long stock;
 

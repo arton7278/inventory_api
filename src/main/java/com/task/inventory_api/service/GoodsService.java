@@ -9,6 +9,7 @@ import com.task.inventory_api.dto.SearchGoodsDto;
 import com.task.inventory_api.dto.UpdateInventoryDto;
 import com.task.inventory_api.exception.ApiCustomException;
 import com.task.inventory_api.repository.GoodsRepository;
+import com.task.inventory_api.repository.InventoryRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
@@ -30,20 +31,26 @@ import java.util.concurrent.TimeUnit;
 public class GoodsService {
     private final GoodsRepository goodsRepository;
 
+    private final InventoryRepository inventoryRepository;
+
     private final RedissonClient redissonClient;
 
+    @Transactional
     public Long createGoods(CreateGoodsDto createGoodsDto) {
         validateDuplicateGoodsNm(createGoodsDto.getGoodsNm(), createGoodsDto.getOptionNm());
-
-        Inventory saveInventory = Inventory.builder().stock(0L).build();
 
         Goods saveGoods = Goods.builder()
                 .goodsNm(createGoodsDto.getGoodsNm())
                 .optionNm(createGoodsDto.getOptionNm())
-                .inventory(saveInventory)
                 .build();
 
-        return goodsRepository.save(saveGoods).getGoodsSrl();
+        Goods resultGoods = goodsRepository.save(saveGoods);
+
+        Inventory saveInventory = Inventory.builder().stock(createGoodsDto.getStock()).goods(resultGoods).build();
+
+        inventoryRepository.save(saveInventory);
+
+        return resultGoods.getGoodsSrl();
     }
 
     private void validateDuplicateGoodsNm(String goodsNm, String optionNm) {
