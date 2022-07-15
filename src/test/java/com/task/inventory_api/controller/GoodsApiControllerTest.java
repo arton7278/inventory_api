@@ -107,7 +107,7 @@ public class GoodsApiControllerTest {
     }
 
     /**
-     * 상품 중보 체크
+     * 상품 중복 체크
      * @throws Exception
      */
     @Test

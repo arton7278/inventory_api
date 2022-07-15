@@ -68,7 +68,7 @@ public class GoodsServiceTest {
 
 
     /**
-     * 재고 수정 락 테스트
+     * 재고 증감 락 테스트
      * @throws Exception
      */
     @Test
@@ -105,6 +105,10 @@ public class GoodsServiceTest {
         assertEquals(successCount.get(), 5);
     }
 
+    /**
+     * 재고 차감 테스트
+     * @throws Exception
+     */
     @Test
     public void updateDeductionInventoryMultiThreadTest() throws Exception {
         AtomicInteger successCount = new AtomicInteger();

@@ -1,4 +1,4 @@
-#바로고 개발 과제
+#무신사 개발 과제
 ## 구현 목표
 - 재고 서비스를 위한 Back-End API 개발
 ## 요구사항
@@ -11,9 +11,8 @@
 - In-Memory DB : Redis
 
 ## 실행 방법
-- docker run -p 3306:3308 --name mysql_boot -e MYSQL_ROOT_PASSWORD=1 -e MYSQL_DATABASE=crud_db -e MYSQL_USER=ksh -e MYSQL_PASSWORD=pass -d mysql
+- docker run -p 3306:3306 --name crud_db -e MYSQL_ROOT_PASSWORD=1 -e MYSQL_DATABASE=crud_db -e MYSQL_USER=ksh -e MYSQL_PASSWORD=pass -d mysql
 - docker run -p 6379:6379 --name redis_crud_db -d redis
-- docker run -d -p 1521:1521 -p 8081:81 -v /Users/dev/util/h2:/opt/h2-data -e H2_OPTIONS=-ifNotExists --name=h2 oscarfonts/h2:1.4.199
 - ./gradlew clean build --exclude-task test
 - java -jar build/libs/inventory_api-0.0.1-SNAPSHOT.jar
 - 브라우저에서 http://localhost:8080/swagger-ui.html 접속
